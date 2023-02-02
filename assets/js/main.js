@@ -4,6 +4,8 @@
 const roundsSelection = document.querySelector("#roundsSelection");
 const roundsCounter = document.querySelector("#roundsCounter");
 const roundOf = document.querySelector("#roundOf");
+const playerInput = document.querySelector("#playerInput");
+const restart = document.querySelector("#restart");
 
 //Rounds
 const roundFive = document.querySelector("#roundFive");
@@ -20,8 +22,11 @@ const btnScissor = document.querySelector("#scissor");
 
 //Output
 const playerPoints = document.querySelector("#playerPoints");
+let playerScore = 0;
 const cpuPoints = document.querySelector("#cpuPoints");
+let cpuScore = 0;
 const resultText = document.querySelector("#resultText");
+const finalResult = document.querySelector("#finalResult");
 
 //reset Button
 const btnReset = document.querySelector("#reset");
@@ -36,7 +41,6 @@ btnReset.addEventListener("click", () => {
 
 function computerPlay() {
     let options = ["Rock", "Paper", "Scissor"];
-
     return options[Math.floor(Math.random() * options.length)]; 
 }
 
@@ -52,13 +56,17 @@ btnRock.addEventListener("click", (event) =>{
     roundsCounter.style.display = "block";
 
     if (cpuInput === "Scissor"){
-        //playerPoints++; // add point for player
-        console.log("win");
+        playerScore++;
+        playerPoints.innerHTML = playerScore.toString();
+        resultText.innerHTML= `You chose ` + btnRock.value + ` and the Computer chose ` + cpuInput +`. You WIN!`;
+        return
     } else if (cpuInput === "Paper"){
-        //cpuPoints++; // add point for computer
-        console.log('lose');
+        cpuScore++;
+        cpuPoints.innerHTML = cpuScore.toString();
+        resultText.innerHTML=`You chose ` + btnRock.value + ` and the Computer chose ` + cpuInput + `. YOU LOSE!`;
+        return
     } else {
-        console.log("draw");
+        resultText.innerHTML= `DRAW!`;
     }
 
 })
@@ -101,19 +109,36 @@ const userRound = () => {
     roundCounter++;
     let counterOutput = roundCounter.toString();
 
-    if (roundFive.checked && roundCounter<=5){
+    if (roundFive.checked && roundCounter <= 5){
         roundOf.innerHTML = `${counterOutput} /5`;
         return
-    }else if(roundTen.checked && roundCounter<=10){
+    }else if(roundTen.checked && roundCounter <= 10){
         roundOf.innerHTML = `${counterOutput} /10`;
         return
-    }else if(roundFifteen.checked && roundCounter<=15){
+    }else if(roundFifteen.checked && roundCounter <= 15){
         roundOf.innerHTML = `${counterOutput} /15`;
         return
-    }else if(roundTwenty.checked && roundCounter<=20){
+    }else if(roundTwenty.checked && roundCounter <= 20){
         roundOf.innerHTML = `${counterOutput} /20`;
         return
     }
     else{
+        overallScore();
+        playerInput.style.display = 'none';
+        restart.style.display = 'block';
     }
 }
+
+// overall Score function
+
+const overallScore = () => {
+    if (playerScore > cpuScore){
+        console.log("You Win");
+        finalResult.innerHTML = "YOU WIN!";
+    }else if (playerScore < cpuScore){
+        console.log("You lose");
+        finalResult.innerHTML = "YOU LOSE!";
+    }else{
+        console.log('draw');
+        finalResult.innerHTML = "IT'S A DRAW!";
+}}
