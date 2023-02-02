@@ -1,11 +1,167 @@
-/* 
-section roundsCounter & section restart
-display: none */
+/* Color Scheme
+- Black: #252525
+- Purple: #6930C3
+- Teal : #64DFDF
+- Yellow: #FFD523
+- lightGrey: #B2B2B2; */
+
+
+$colorBlack: #252525;
+$colorPurple: #6930C3;
+$colorTeal: #64DFDF;
+$colorYellow: #FFD523;
+$colorLightGray: #B2B2B2;
+
+/*  
+font-family: 'Press Start 2P', cursive;
+font-family: 'Work Sans', sans-serif;   
+ */
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url(../font/Press_Start_2P/PressStart2P-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Work Sans';
+    src: url(../font/Work_Sans/WorkSans-VariableFont_wght.ttf);
+}
+
+/* Global Style */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: $colorBlack;
+    font-family: 'Press Start 2P', cursive;
+}
+
+h1, h2, h4 {
+    color: $colorPurple;
+}
+
+h2{
+    color: $colorLightGray;
+    font-size: 1.1rem;
+}
+
+h3, p, label{
+    color: $colorLightGray;
+    margin-bottom: 1rem;
+}
+
+button{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+section{
+    width: 400px;
+}
+
+/* Header Style */
+
+header{
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Main Style */
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form{
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        fieldset{
+            height: 150px;
+            padding: 1rem;
+            text-align: center;
+        }
+    }
+}
+
+/* Round Selection & After Input */
+
+#roundsSelection{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    justify-items: center;
+    div{
+        width: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+}
 
 #roundsCounter{
     display: none;
+    p{
+        text-align: center;
+        margin-top: 2rem;
+    }
 }
 
-#restart{
+/* Result section */
+
+#result{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
+
+/* Section Player Input */
+#playerInput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#resultText{
+    height: 100px;
+    text-align: center;
+}
+
+#rock, #paper, #scissor{
+    border: none;
+    margin: 1rem;
+    img{
+        width: 70px;
+        height: 70px;
+        border: 1px solid $colorLightGray;
+        border-radius: 50%;
+        padding: 10px;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+#restartSection{
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 217px;
+    text-align: center;
+}
+
+/* Restart Button */
+#restart{
+    font-family: 'Press Start 2P', cursive;
+    color: $colorYellow;
+    border: none;
+    text-decoration: underline;
+    padding: 0.5rem;
+    &:hover{
+        cursor: pointer;
+    }
 }

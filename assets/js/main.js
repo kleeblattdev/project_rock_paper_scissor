@@ -5,7 +5,7 @@ const roundsSelection = document.querySelector("#roundsSelection");
 const roundsCounter = document.querySelector("#roundsCounter");
 const roundOf = document.querySelector("#roundOf");
 const playerInput = document.querySelector("#playerInput");
-const restart = document.querySelector("#restart");
+const restartSection = document.querySelector("#restartSection");
 
 //Rounds
 const roundFive = document.querySelector("#roundFive");
@@ -30,9 +30,9 @@ const resultText = document.querySelector("#resultText");
 const finalResult = document.querySelector("#finalResult");
 
 //reset Button
-const btnReset = document.querySelector("#reset");
+const btnRestart = document.querySelector("#restart");
 
-btnReset.addEventListener("click", () => {
+btnRestart.addEventListener("click", () => {
     window.location.reload();
 })
 
@@ -48,9 +48,7 @@ function computerPlay() {
 //Set max round
 
 const maxRound = () =>{
-    if (maxRoundCounter!= 0){
-        return;
-    } else if (roundFive.checked){
+    if (roundFive.checked){
         maxRoundCounter = 5;
         return
     }else if(roundTen.checked){
@@ -62,6 +60,7 @@ const maxRound = () =>{
     }else if(roundTwenty.checked){
         maxRoundCounter = 20;
         return
+    }else{
     }
 }
 
@@ -75,7 +74,7 @@ const userRound = () => {
     if (roundCounter === maxRoundCounter) {
         overallScore();
         playerInput.style.display = 'none';
-        restart.style.display = 'block';
+        restartSection.style.display = 'flex';
     } else{}
 }
 
@@ -95,12 +94,16 @@ const overallScore = () => {
 
 // Rock button function
 btnRock.addEventListener("click", (event) =>{
-    const userInput = btnRock.value;
+    let userInput = btnRock.value;
     const cpuInput = computerPlay();
 
     event.preventDefault();
     maxRound();
-    userRound(); // round counter 
+    if (maxRoundCounter === 0){
+        resultText.innerHTML = "Please select how many rounds you want to play";
+        return
+    }else{
+    userRound()} // round counter 
     
     roundsSelection.style.display = "none";
     roundsCounter.style.display = "block";
@@ -108,7 +111,7 @@ btnRock.addEventListener("click", (event) =>{
     if (cpuInput === "Scissor"){
         playerScore++;
         playerPoints.innerHTML = playerScore.toString();
-        resultText.innerHTML= `You chose ` + btnRock.value + ` and the Computer chose ` + cpuInput +`. You WIN!`;
+        resultText.innerHTML= `You chose ` + userInput + ` and the Computer chose ` + cpuInput +`. You WIN!`;
         return
     } else if (cpuInput === "Paper"){
         cpuScore++;
@@ -128,7 +131,11 @@ btnPaper.addEventListener("click", (event) =>{
 
     event.preventDefault();
     maxRound();
-    userRound(); // round counter 
+    if (maxRoundCounter === 0){
+        resultText.innerHTML = "Please select how many rounds you want to play";
+        return
+    }else{
+    userRound()} // round counter 
     
     roundsSelection.style.display = "none";
     roundsCounter.style.display = "block";
@@ -155,7 +162,11 @@ btnScissor.addEventListener("click", (event) =>{
 
     event.preventDefault();
     maxRound();
-    userRound(); // round counter 
+    if (maxRoundCounter === 0){
+        resultText.innerHTML = "Please select how many rounds you want to play";
+        return
+    }else{
+    userRound()} // round counter 
     
     roundsSelection.style.display = "none";
     roundsCounter.style.display = "block";
