@@ -15,43 +15,47 @@
     <main>
         <form>
             <fieldset>
-                <h3>How many rounds?</h3>
-                <div>
-                    <label for="roundFive">5</label>
-                    <input type="radio" name="round" id="roundFive">
-                </div>
-                <div>
-                    <label for="roundTen">10</label>
-                    <input type="radio" name="round" id="roundTen">
-                </div>
-                <div>
-                    <label for="roundFifteen">15</label>
-                    <input type="radio" name="round" id="roundFifteen">
-                </div>
-                <div>
-                    <label for="roundTwenty"20</label>
-                    <input type="radio" name="round" id="roundTwenty">
-                </div>
+                    <h3>How many rounds?</h3>
+                    <section id="rounds">
+                    <div>
+                        <label for="roundFive">5</label>
+                        <input type="radio" name="round" id="roundFive">
+                    </div>
+                    <div>
+                        <label for="roundTen">10</label>
+                        <input type="radio" name="round" id="roundTen">
+                    </div>
+                    <div>
+                        <label for="roundFifteen">15</label>
+                        <input type="radio" name="round" id="roundFifteen">
+                    </div>
+                    <div>
+                        <label for="roundTwenty">20</label>
+                        <input type="radio" name="round" id="roundTwenty">
+                    </div>
+                    </section>
+    <!-- After User Input -->
+                <section id="roundsCounter">
+                    <p id="roundOf"></p>
+                </section>
             </fieldset>
-        
     <!-- Output Result -->
-            <section>
-                <p>User</p>
-                <p><span>0</span> : <span></span></p>
-                <p>Computer</p>
+            <section id="result">
+                <h4>User</h4>
+                <p><span id="playerPoints">0</span> : <span id="cpuPoints">0</span></p>
+                <h4>Computer</h4>
             </section>
     <!-- User Input Rock, Paper, Scissor -->
-            <section>
-                <h2>Let's play</h2>
-                <button>Rock</button>
-                <button>Paper</button>
-                <button>Scissor</button>
+            <section id="playerInput">
+                <h2 id="resultText">Let's play</h2>
+                <button type="submit" id="rock" value="0">Rock</button>
+                <button type="submit" id="paper" value="1">Paper</button>
+                <button type="submit" id="scissor" value="2">Scissor</button>
                 <p>Choose wisely.</p>
             </section>
-            <button type="reset">Restart</button>
+            <button type="reset" id="reset">Restart</button>
         </form>
     </main>
-
     
     <script src="./assets/js/main.js"></script>
 </body>
