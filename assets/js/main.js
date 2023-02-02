@@ -17,6 +17,7 @@ let roundCounter = 0;
 let maxRoundCounter = 0;
 
 //Rock, Paper, Scissors buttons
+const btnRockPaperScissor = document.querySelector(".btnRockPaperScissor");
 const btnRock = document.querySelector("#rock");
 const btnPaper = document.querySelector("#paper");
 const btnScissor = document.querySelector("#scissor");
@@ -82,15 +83,15 @@ const userRound = () => {
 
 const overallScore = () => {
     if (playerScore > cpuScore){
-        console.log("You Win");
+        finalResult.style.color = 'green';
         finalResult.innerHTML = "YOU WIN!";
     }else if (playerScore < cpuScore){
-        console.log("You lose");
+        finalResult.style.color = 'red';
         finalResult.innerHTML = "YOU LOSE!";
     }else{
-        console.log('draw');
         finalResult.innerHTML = "IT'S A DRAW!";
 }}
+
 
 // Rock button function
 btnRock.addEventListener("click", (event) =>{
@@ -112,6 +113,7 @@ btnRock.addEventListener("click", (event) =>{
         playerScore++;
         playerPoints.innerHTML = playerScore.toString();
         resultText.innerHTML= `You chose ` + userInput + ` and the Computer chose ` + cpuInput +`. You WIN!`;
+        
         return
     } else if (cpuInput === "Paper"){
         cpuScore++;

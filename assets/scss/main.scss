@@ -5,27 +5,12 @@
 - Yellow: #FFD523
 - lightGrey: #B2B2B2; */
 
-
-$colorBlack: #252525;
-$colorPurple: #6930C3;
-$colorTeal: #64DFDF;
-$colorYellow: #FFD523;
-$colorLightGray: #B2B2B2;
+@import 'variables.scss';
+@import 'font.scss';
 
 /*  
-font-family: 'Press Start 2P', cursive;
-font-family: 'Work Sans', sans-serif;   
+font-family: 'Press Start 2P', cursive; 
  */
-
-@font-face {
-    font-family: 'Press Start 2P';
-    src: url(../font/Press_Start_2P/PressStart2P-Regular.ttf);
-}
-
-@font-face {
-    font-family: 'Work Sans';
-    src: url(../font/Work_Sans/WorkSans-VariableFont_wght.ttf);
-}
 
 /* Global Style */
 *{
@@ -52,7 +37,9 @@ h3, p, label{
     color: $colorLightGray;
     margin-bottom: 1rem;
 }
-
+h4{
+    font-size: 1.1rem;
+}
 button{
     background-color: rgba(0, 0, 0, 0);
 }
@@ -66,6 +53,7 @@ section{
 header{
     text-align: center;
     padding: 1rem;
+    margin-bottom: 3rem;
 }
 
 /* Main Style */
@@ -75,13 +63,13 @@ main{
     justify-content: center;
     align-items: center;
     form{
-        width: 400px;
         display: flex;
         flex-direction: column;
         align-items: center;
         fieldset{
+            width: 400px;
             height: 150px;
-            padding: 1rem;
+            padding-top: 1.5rem;
             text-align: center;
         }
     }
@@ -115,7 +103,7 @@ main{
 #result{
     display: flex;
     justify-content: space-between;
-    margin: 2rem;
+    margin: 2rem 0;
 }
 
 /* Section Player Input */
@@ -130,14 +118,14 @@ main{
     text-align: center;
 }
 
-#rock, #paper, #scissor{
+.btnRockPaperScissor{
     border: none;
     margin: 1rem;
+    border: 1px solid $colorLightGray;
+    border-radius: 50%;
     img{
         width: 70px;
         height: 70px;
-        border: 1px solid $colorLightGray;
-        border-radius: 50%;
         padding: 10px;
     }
     &:hover{
@@ -145,6 +133,13 @@ main{
     }
 }
 
+.win{
+    border: 1px solid green;
+}
+
+.lose{
+    border: 1px solid red;
+}
 
 #restartSection{
     display: none;
@@ -165,3 +160,7 @@ main{
         cursor: pointer;
     }
 }
+
+/* Media Querie for mobile devices */
+
+@import 'mediaQueries.scss';
