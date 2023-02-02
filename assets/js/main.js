@@ -14,6 +14,7 @@ const roundFifteen = document.querySelector("#roundFifteen");
 const roundTwenty = document.querySelector("#roundTwenty");
 //
 let roundCounter = 0;
+let maxRoundCounter = 0;
 
 //Rock, Paper, Scissors buttons
 const btnRock = document.querySelector("#rock");
@@ -44,12 +45,61 @@ function computerPlay() {
     return options[Math.floor(Math.random() * options.length)]; 
 }
 
+//Set max round
+
+const maxRound = () =>{
+    if (maxRoundCounter!= 0){
+        return;
+    } else if (roundFive.checked){
+        maxRoundCounter = 5;
+        return
+    }else if(roundTen.checked){
+        maxRoundCounter = 10;
+        return
+    }else if(roundFifteen.checked){
+        maxRoundCounter = 15;
+        return
+    }else if(roundTwenty.checked){
+        maxRoundCounter = 20;
+        return
+    }
+}
+
+//Roundcounter function
+
+const userRound = () => {
+    roundCounter++;
+    let counterOutput = roundCounter.toString();
+    roundOf.innerHTML = `${counterOutput} / ${maxRoundCounter.toString()}`;
+
+    if (roundCounter === maxRoundCounter) {
+        overallScore();
+        playerInput.style.display = 'none';
+        restart.style.display = 'block';
+    } else{}
+}
+
+// overall Score function
+
+const overallScore = () => {
+    if (playerScore > cpuScore){
+        console.log("You Win");
+        finalResult.innerHTML = "YOU WIN!";
+    }else if (playerScore < cpuScore){
+        console.log("You lose");
+        finalResult.innerHTML = "YOU LOSE!";
+    }else{
+        console.log('draw');
+        finalResult.innerHTML = "IT'S A DRAW!";
+}}
+
 // Rock button function
 btnRock.addEventListener("click", (event) =>{
     const userInput = btnRock.value;
     const cpuInput = computerPlay();
 
     event.preventDefault();
+    maxRound();
     userRound(); // round counter 
     
     roundsSelection.style.display = "none";
@@ -77,68 +127,50 @@ btnPaper.addEventListener("click", (event) =>{
     const cpuInput = computerPlay();
 
     event.preventDefault();
+    maxRound();
+    userRound(); // round counter 
+    
+    roundsSelection.style.display = "none";
+    roundsCounter.style.display = "block";
 
     if (cpuInput === "Rock"){
-        console.log("win");
+        playerScore++;
+        playerPoints.innerHTML = playerScore.toString();
+        resultText.innerHTML= `You chose ` + btnPaper.value + ` and the Computer chose ` + cpuInput +`. You WIN!`;
+        return
     } else if (cpuInput === "Scissor"){
-        console.log('lose');
+        cpuScore++;
+        cpuPoints.innerHTML = cpuScore.toString();
+        resultText.innerHTML=`You chose ` + btnPaper.value + ` and the Computer chose ` + cpuInput + `. YOU LOSE!`;
+        return
     } else {
-        console.log("draw");
+        resultText.innerHTML= `DRAW!`;
     }
 })
 
 //Scissor button function
 btnScissor.addEventListener("click", (event) =>{
-    const userInput = Number(btnScissor.value);
+    const userInput = btnScissor.value;
     const cpuInput = computerPlay();
 
     event.preventDefault();
+    maxRound();
+    userRound(); // round counter 
+    
+    roundsSelection.style.display = "none";
+    roundsCounter.style.display = "block";
 
     if (cpuInput === "Paper"){
-        console.log("win");
-    } else if (cpuInput === "Scissor"){
-        console.log('lose');
+        playerScore++;
+        playerPoints.innerHTML = playerScore.toString();
+        resultText.innerHTML= `You chose ` + btnScissor.value + ` and the Computer chose ` + cpuInput +`. You WIN!`;
+        return
+    } else if (cpuInput === "Rock"){
+        cpuScore++;
+        cpuPoints.innerHTML = cpuScore.toString();
+        resultText.innerHTML=`You chose ` + btnScissor.value + ` and the Computer chose ` + cpuInput + `. YOU LOSE!`;
+        return
     } else {
-        console.log("draw");
+        resultText.innerHTML= `DRAW!`;
     }
 })
-
-//Roundcounter function
-
-const userRound = () => {
-    roundCounter++;
-    let counterOutput = roundCounter.toString();
-
-    if (roundFive.checked && roundCounter <= 5){
-        roundOf.innerHTML = `${counterOutput} /5`;
-        return
-    }else if(roundTen.checked && roundCounter <= 10){
-        roundOf.innerHTML = `${counterOutput} /10`;
-        return
-    }else if(roundFifteen.checked && roundCounter <= 15){
-        roundOf.innerHTML = `${counterOutput} /15`;
-        return
-    }else if(roundTwenty.checked && roundCounter <= 20){
-        roundOf.innerHTML = `${counterOutput} /20`;
-        return
-    }
-    else{
-        overallScore();
-        playerInput.style.display = 'none';
-        restart.style.display = 'block';
-    }
-}
-
-// overall Score function
-
-const overallScore = () => {
-    if (playerScore > cpuScore){
-        console.log("You Win");
-        finalResult.innerHTML = "YOU WIN!";
-    }else if (playerScore < cpuScore){
-        console.log("You lose");
-        finalResult.innerHTML = "YOU LOSE!";
-    }else{
-        console.log('draw');
-        finalResult.innerHTML = "IT'S A DRAW!";
-}}
